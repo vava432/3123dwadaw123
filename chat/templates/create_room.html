@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="glass-card">
+        <h1>Создать комнату</h1>
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+        <form method="POST">
+            <div class="form-group">
+                <input type="text" name="room_name" placeholder="Имя комнаты" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="room_password" placeholder="Пароль комнаты" required>
+            </div>
+            <button type="submit" class="btn">Создать</button>
+        </form>
+        <p class="account-prompt"><a href="{{ url_for('dashboard') }}">Назад к панели управления</a></p>
+    </div>
+</div>
+{% endblock %}

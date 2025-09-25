@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="glass-card">
+        <h1>Регистрация</h1>
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+        
+        <!-- Кнопка генерации логина и пароля -->
+        <div class="form-group">
+            <button type="button" id="generateCredentials" class="btn" style="width: 100%; margin-bottom: 15px;">
+                Сгенерировать логин и пароль
+            </button>
+        </div>
+
+        <form method="POST" id="registerForm">
+            <div class="form-group">
+                <input type="text" name="username" id="username" placeholder="Имя пользователя" required>
+            </div>
+            <div class="form-group password-container">
+                <input type="password" name="password" id="regPassword" placeholder="Пароль" required>
+                <button type="button" class="password-toggle" id="toggleRegPassword">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Ссылка для скачивания credentials -->
+            <div id="downloadSection" style="display: none; margin-bottom: 20px;">
+                <a href="#" id="downloadLink" class="btn" style="width: 100%; background: var(--accent-hover);">
+                    Скачать логин и пароль
+                </a>
+                <p class="small-text" style="text-align: center; margin-top: 10px; color: var(--text-secondary);">
+                    Сохраните данные для входа!
+                </p>
+            </div>
+            
+            <button type="submit" class="btn">Зарегистрироваться</button>
+        </form>
+        <p class="account-prompt">Уже есть аккаунта? <a href="{{ url_for('login') }}">Войдите</a></p>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const generateBtn = document.getElementById('generateCredentials');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('regPassword');
+    const downloadSection = document.getElementById('downloadSection');
+    const downloadLink = document.getElementById('downloadLink');
+    const registerForm = document.getElementById('registerForm');
+    const togglePassword = document.getElementById('toggleRegPassword');
+
+    // Функция переключения видимости пароля
+    function setupPasswordToggle(toggleBtn, passwordField) {
+        toggleBtn.addEventListener('click', function() {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            
+            const icon = this.querySelector('svg');
+            if (type === 'text') {
+                icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line>';
+            } else {
+                icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+            }
+        });
+    }
+
+    // Настройка переключения пароля для регистрации
+    if (togglePassword && passwordInput) {
+        setupPasswordToggle(togglePassword, passwordInput);
+    }
+
+    // Функция генерации случайной строки
+    function generateRandomString(length = 8) {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < length; i++) {
+            result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
+    }
+
+    // Функция генерации логина и пароля
+    function generateCredentials() {
+        const login = 'user_' + generateRandomString(6);
+        const password = generateRandomString(10);
+        
+        usernameInput.value = login;
+        passwordInput.value = password;
+        
+        // Показываем секцию скачивания
+        downloadSection.style.display = 'block';
+        
+        // Создаем файл для скачивания
+        const credentialsText = `Ваши данные для входа:\n\nЛогин: ${login}\nПароль: ${password}\n\nСохраните эти данные в надежном месте!`;
+        const blob = new Blob([credentialsText], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        
+        downloadLink.href = url;
+        downloadLink.download = `credentials_${login}.txt`;
+        
+        // Очищаем URL после скачивания
+        downloadLink.addEventListener('click', function() {
+            setTimeout(() => URL.revokeObjectURL(url), 100);
+        });
+        
+        // Показываем уведомление
+        showNotification('Логин и пароль сгенерированы!', 'success');
+    }
+
+    // Функция показа уведомления
+    function showNotification(message, type = 'info') {
+        // Удаляем предыдущие уведомления
+        const existingNotification = document.querySelector('.notification');
+        if (existingNotification) {
+            existingNotification.remove();
+        }
+
+        const notification = document.createElement('div');
+        notification.className = `notification ${type}`;
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+            background: ${type === 'success' ? '#27ae60' : type === 'error' ? '#e74c3c' : '#3498db'};
+        `;
+
+        document.body.appendChild(notification);
+
+        // Автоматическое скрытие через 3 секунды
+        setTimeout(() => {
+            notification.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    // Обработчик генерации
+    generateBtn.addEventListener('click', generateCredentials);
+
+    // Обработчик отправки формы
+    registerForm.addEventListener('submit', function(e) {
+        if (!usernameInput.value || !passwordInput.value) {
+            e.preventDefault();
+            showNotification('Заполните логин и пароль или сгенерируйте их!', 'error');
+            return;
+        }
+        
+        // Показываем уведомление об успешной регистрации
+        showNotification('Регистрация выполнена успешно!', 'success');
+    });
+
+    // Добавляем CSS анимации для уведомлений
+    if (!document.querySelector('#notificationStyles')) {
+        const style = document.createElement('style');
+        style.id = 'notificationStyles';
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+});
+</script>
+
+<style>
+.password-container {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    padding: 5px;
+    border-radius: 4px;
+    transition: color 0.3s ease;
+}
+
+.password-toggle:hover {
+    color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.password-container input[type="password"],
+.password-container input[type="text"] {
+    padding-right: 40px;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    z-index: 1000;
+    animation: slideIn 0.3s ease;
+}
+
+.notification.success {
+    background: #27ae60;
+}
+
+.notification.error {
+    background: #e74c3c;
+}
+
+.notification.info {
+    background: #3498db;
+}
+
+.small-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+#downloadSection {
+    transition: all 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+</style>
+{% endblock %}
