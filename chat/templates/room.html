@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="chat-room">
+    <header>
+        <h1>Комната: {{ room.name }}</h1>
+        <div class="header-actions">
+            <button onclick="copyRoomLink()" class="btn">Копировать ссылку</button>
+            <a href="{{ url_for('dashboard') }}" class="btn">Назад</a>
+        </div>
+    </header>
+
+    <div class="chat-container">
+        <!-- Вкладки -->
+        <div class="tabs">
+            <button class="tab-button active" data-tab="chat">Чат</button>
+            <button class="tab-button" data-tab="files">Файлы</button>
+        </div>
+
+        <!-- Чат -->
+        <div class="tab-content active" id="chat-tab">
+            <div class="messages-container" id="messages-container">
+                {% for message in messages %}
+                <div class="message" data-id="{{ message.id }}">
+                    <span class="username">{{ message.username }}:</span>
+                    <span class="text">{{ message.message|safe }}</span>
+                    <span class="timestamp">{{ message.timestamp }}</span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="message-input">
+                <input type="text" id="message-input" placeholder="Введите сообщение...">
+                <button id="send-button">Отправить</button>
+            </div>
+        </div>
+
+        <!-- Файлы -->
+        <div class="tab-content" id="files-tab">
+            <div class="files-section">
+                <div class="file-upload-area" id="file-upload-area">
+                    <div class="upload-icon">📁</div>
+                    <p>Перетащите файлы сюда или</p>
+                    <input type="file" id="file-input" multiple style="display: none;">
+                    <button onclick="document.getElementById('file-input').click()" class="btn">Выбрать файлы</button>
+                    <div class="upload-info">Максимальный размер: 100MB</div>
+                </div>
+
+                <div class="files-list" id="files-list">
+                    {% for file in files %}
+                    <div class="file-item" data-file-id="{{ file.id }}">
+                        <div class="file-icon">{{ get_file_icon(file.original_filename) }}</div>
+                        <div class="file-info">
+                            <div class="file-name">{{ file.original_filename }}</div>
+                            <div class="file-details">
+                                <span class="file-size">{{ format_file_size(file.file_size) }}</span>
+                                <span class="file-uploader">от {{ file.username }}</span>
+                                <span class="file-date">{{ file.upload_date }}</span>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <button onclick="downloadFile({{ file.id }})" class="btn-small">📥</button>
+                            {% if file.user_id == session.user_id or room.created_by == session.user_id %}
+                            <button onclick="deleteFile({{ file.id }})" class="btn-small delete">🗑️</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const roomLink = "{{ room.link }}";
+let lastMessageId = {{ last_message_id }};
+const currentUsername = "{{ session.username }}";
+const currentUserId = {{ session.user_id }};
+const roomCreatorId = {{ room.created_by }};
+
+function copyRoomLink() {
+    navigator.clipboard.writeText(roomLink)
+        .then(() => alert('Ссылка скопирована в буфер обмена'))
+        .catch(err => console.error('Ошибка копирования:', err));
+}
+</script>
+<script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+<script src="{{ url_for('static', filename='js/files.js') }}"></script>
+{% endblock %}
