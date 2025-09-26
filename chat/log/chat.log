@@ -1,0 +1,43 @@
+2025-09-25 21:58:32,933 - __main__ - INFO - SSL certificates loaded successfully
+2025-09-25 21:58:45,214 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:4443
+ * Running on https://192.168.1.3:4443
+2025-09-25 21:58:45,215 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-25 21:58:45,255 - werkzeug - INFO -  * Restarting with stat
+2025-09-25 21:58:45,869 - __main__ - INFO - SSL certificates loaded successfully
+2025-09-25 21:58:45,897 - werkzeug - WARNING -  * Debugger is active!
+2025-09-25 21:58:45,926 - werkzeug - INFO -  * Debugger PIN: 140-620-989
+2025-09-25 21:59:00,991 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 21:59:00] "GET /login HTTP/1.1" 200 -
+2025-09-25 21:59:01,484 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 21:59:01] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-09-25 21:59:01,490 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 21:59:01] "GET /static/style.css HTTP/1.1" 200 -
+2025-09-25 21:59:03,212 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 21:59:03] "GET /register HTTP/1.1" 200 -
+2025-09-25 21:59:03,301 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 21:59:03] "GET /static/style.css HTTP/1.1" 200 -
+2025-09-25 21:59:03,319 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 21:59:03] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-09-25 21:59:06,919 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 21:59:06] "[32mPOST /register HTTP/1.1[0m" 302 -
+2025-09-25 21:59:06,966 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 21:59:06] "GET /dashboard HTTP/1.1" 200 -
+2025-09-25 21:59:07,073 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 21:59:07] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+2025-09-25 21:59:07,078 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 21:59:07] "[36mGET /static/js/script.js HTTP/1.1[0m" 304 -
+2025-09-25 21:59:07,219 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 21:59:07] "[33mGET /get_visited_rooms HTTP/1.1[0m" 404 -
+2025-09-25 21:59:09,472 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 21:59:09] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-09-25 21:59:09,494 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 21:59:09] "GET / HTTP/1.1" 200 -
+2025-09-25 22:05:22,810 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 22:05:22] "[32mGET /dashboard HTTP/1.1[0m" 302 -
+2025-09-25 22:05:22,844 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 22:05:22] "GET /login HTTP/1.1" 200 -
+2025-09-25 22:05:22,937 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 22:05:22] "GET /static/style.css HTTP/1.1" 200 -
+2025-09-25 22:05:22,958 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 22:05:22] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-09-25 22:08:30,699 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 22:08:30] "GET /register HTTP/1.1" 200 -
+2025-09-25 22:08:30,804 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 22:08:30] "GET /static/style.css HTTP/1.1" 200 -
+2025-09-25 22:08:30,815 - werkzeug - INFO - 192.168.1.3 - - [25/Sep/2025 22:08:30] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-09-26 18:34:43,148 - __main__ - INFO - SSL certificates loaded successfully
+2025-09-26 18:34:56,301 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:4443
+ * Running on https://192.168.1.3:4443
+2025-09-26 18:34:56,306 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-26 18:34:56,375 - werkzeug - INFO -  * Restarting with stat
+2025-09-26 18:34:57,159 - __main__ - INFO - SSL certificates loaded successfully
+2025-09-26 18:34:57,192 - werkzeug - WARNING -  * Debugger is active!
+2025-09-26 18:34:57,239 - werkzeug - INFO -  * Debugger PIN: 140-620-989
+2025-09-26 18:35:49,173 - werkzeug - INFO - 192.168.1.3 - - [26/Sep/2025 18:35:49] "GET / HTTP/1.1" 200 -
+2025-09-26 18:35:50,678 - werkzeug - INFO - 192.168.1.3 - - [26/Sep/2025 18:35:50] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-26 18:36:24,328 - werkzeug - INFO - 192.168.1.3 - - [26/Sep/2025 18:36:24] "GET / HTTP/1.1" 200 -
