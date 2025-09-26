@@ -1,0 +1,328 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-bg: rgba(255, 255, 255, 0.1);
+    --primary-border: rgba(255, 255, 255, 0.2);
+    --primary-hover: rgba(255, 255, 255, 0.15);
+    --secondary-bg: rgba(255, 255, 255, 0.05);
+    --accent-color: #4fc3f7;
+    --accent-hover: rgba(79, 195, 247, 0.3);
+    --error-color: #ff6b6b;
+    --success-color: #4caf50;
+    --text-primary: #4fc3f7;
+    --text-secondary: #4fc3f7;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        url('river-night-view-nature-illustration-art-d3o8618qithikkj8.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* Частицы */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: float 15s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-20px) translateX(10px); }
+    50% { transform: translateY(-35px) translateX(-15px); }
+    75% { transform: translateY(-15px) translateX(15px); }
+}
+
+/* Контейнеры */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.glass-card {
+    background: var(--primary-bg);
+    backdrop-filter: blur(12px) saturate(180%);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 20px 0;
+    border: 1px solid var(--primary-border);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+}
+
+/* Аутентификация */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.auth-container .glass-card {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.auth-container h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+/* Формы */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 0 2px var(--accent-color);
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+/* Заголовок панели */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    font-size: 2.5rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Статистика */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border-left: 4px solid var(--accent-color);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+/* Таблицы */
+.tables-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.table-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.table-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-color);
+}
+
+.table-card.active {
+    border-color: var(--accent-color);
+    background: rgba(79, 195, 247, 0.1);
+}
+
+/* Данные таблицы */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.data-table th {
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+}
+
+.data-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* SQL запросы */
+.query-section {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+#sql-query {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    font-family: monospace;
+    resize: vertical;
+}
+
+#sql-query:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Уведомления */
+.notification {
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+    animation: slideIn 0.3s ease;
+}
+
+.notification.success {
+    background: var(--success-color);
+}
+
+.notification.error {
+    background: var(--error-color);
+}
+
+.notification.info {
+    background: var(--accent-color);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Загрузка */
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .dashboard-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tables-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .query-section {
+        flex-direction: column;
+    }
+}

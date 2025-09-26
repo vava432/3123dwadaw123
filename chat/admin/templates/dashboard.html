@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель управления БД</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="particles">
+        {% for i in range(50) %}
+        <div class="particle" style="
+            top: {{ range(0, 100)|random }}%;
+            left: {{ range(0, 100)|random }}%;
+            width: {{ range(2, 6)|random }}px;
+            height: {{ range(2, 6)|random }}px;
+            animation-delay: {{ range(0, 20)|random }}s;
+        "></div>
+        {% endfor %}
+    </div>
+
+    <div class="container">
+        <header class="dashboard-header">
+            <h1>анель управления базой данных</h1>
+            <div class="user-info">
+                <span>Пользователь: <strong>{{ username }}</strong></span>
+                <a href="{{ url_for('logout') }}" class="btn">Выйти</a>
+            </div>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="notification {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="dashboard-content">
+            <!-- Статистика -->
+            <div class="glass-card">
+                <h2>Статистика базы данных</h2>
+                <div id="stats-container" class="stats-grid">
+                    <div class="loading">Загрузка статистики...</div>
+                </div>
+            </div>
+
+            <!-- Таблицы -->
+            <div class="glass-card">
+                <div class="section-header">
+                    <h2>Таблицы базы данных</h2>
+                    <button id="refresh-btn" class="btn">Обновить</button>
+                </div>
+                
+                <div id="tables-container" class="tables-list">
+                    <div class="loading">Загрузка таблиц...</div>
+                </div>
+            </div>
+
+            <!-- Просмотр таблицы -->
+            <div class="glass-card" id="table-view-section" style="display: none;">
+                <h2 id="table-view-title">Данные таблицы</h2>
+                <div id="table-data-container">
+                    <div class="loading">Выберите таблицу для просмотра</div>
+                </div>
+            </div>
+
+            <!-- SQL запросы -->
+            <div class="glass-card">
+                <h2>SQL Запросы</h2>
+                <div class="query-section">
+                    <textarea id="sql-query" placeholder="Введите SQL запрос (только SELECT)..." rows="4"></textarea>
+                    <button id="execute-query" class="btn">Выполнить</button>
+                </div>
+                <div id="query-result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

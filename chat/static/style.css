@@ -1,0 +1,956 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-bg: rgba(255, 255, 255, 0.1);
+    --primary-border: rgba(255, 255, 255, 0.2);
+    --primary-hover: rgba(255, 255, 255, 0.15);
+    --secondary-bg: rgba(255, 255, 255, 0.05);
+    --accent-color: #4fc3f7;
+    --accent-hover: rgba(79, 195, 247, 0.3);
+    --error-color: #ff6b6b;
+    --text-primary: #4fc3f7;
+    --text-secondary: #4fc3f7;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), /* Затемнение фона */
+        url('river-night-view-nature-illustration-art-d3o8618qithikkj8.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+
+.bg-stripe {
+    position: absolute;
+    width: 200%;
+    height: 40px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(79, 195, 247, 0.2), 
+        transparent);
+    transform: rotate(-45deg);
+    animation: stripeMove 15s infinite linear;
+}
+
+@keyframes stripeMove {
+    0% { transform: rotate(-45deg) translateX(-100%); }
+    100% { transform: rotate(-45deg) translateX(100%); }
+}
+
+/* Частицы */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: float 15s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    25% { transform: translateY(-20px) translateX(10px); }
+    50% { transform: translateY(-35px) translateX(-15px); }
+    75% { transform: translateY(-15px) translateX(15px); }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Улучшенный стеклянный эффект */
+.glass-card {
+    background: var(--primary-bg);
+    backdrop-filter: blur(12px) saturate(180%);
+    border-radius: 20px;
+    padding: 35px;
+    margin: 20px 0;
+    border: 1px solid var(--primary-border);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    animation: fadeIn 0.6s ease-out;
+}
+
+.glass-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Формы аутентификации */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.auth-container .glass-card {
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+}
+
+.auth-container h1 {
+    margin-bottom: 25px;
+    font-size: 2.2rem;
+    font-weight: 600;
+    background: linear-gradient(45deg, var(--accent-color), #a7ffeb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    font-size: 16px;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.1);
+}
+
+.form-group input::placeholder {
+    color: var(--text-secondary);
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background: var(--primary-bg);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: 12px;
+    border: 1px solid var(--primary-border);
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.error {
+    color: var(--error-color);
+    margin-bottom: 20px;
+    padding: 12px;
+    background: rgba(255, 107, 107, 0.1);
+    border-radius: 10px;
+    border-left: 4px solid var(--error-color);
+}
+
+/* Панель управления */
+.dashboard header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 20px 0;
+}
+
+.dashboard h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.rooms-section h2 {
+    margin: 35px 0 20px;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.rooms-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.room-item {
+    transition: var(--transition);
+}
+
+.room-item:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+/* Комната чата */
+.chat-room header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--primary-border);
+}
+
+.chat-container {
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.messages-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 25px;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.02) 100%);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-border) transparent;
+}
+
+.messages-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.messages-container::-webkit-scrollbar-thumb {
+    background: var(--primary-border);
+    border-radius: 3px;
+}
+
+.message {
+    padding: 15px 20px;
+    background: var(--primary-bg);
+    border-radius: 15px;
+    border-left: 4px solid var(--accent-color);
+    transition: var(--transition);
+    animation: messageAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-wrap: break-word;
+}
+
+.message:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.message .username {
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+.message .text {
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.message .timestamp {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-left: 10px;
+    float: right;
+}
+
+.message-input {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.message-input input {
+    flex: 1;
+    padding: 18px 20px;
+    border: none;
+    border-radius: 15px;
+    background: var(--secondary-bg);
+    color: var(--text-primary);
+    font-size: 16px;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.message-input input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.message-input input::placeholder {
+    color: var(--text-secondary);
+}
+
+.message-input button {
+    padding: 18px 25px;
+    background: var(--accent-hover);
+    border: 1px solid var(--accent-color);
+    border-radius: 15px;
+    font-weight: 500;
+}
+
+.message-input button:hover {
+    background: rgba(79, 195, 247, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Главная страница */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.main-glass-card {
+    background: var(--primary-bg);
+    backdrop-filter: blur(12px) saturate(180%);
+    border-radius: 20px;
+    padding: 50px 40px;
+    border: 1px solid var(--primary-border);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.main-glass-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: rotate(45deg);
+    animation: shine 6s infinite;
+    z-index: -1;
+}
+
+@keyframes shine {
+    0% { transform: rotate(45deg) translateX(-100%); }
+    20% { transform: rotate(45deg) translateX(200%); }
+    100% { transform: rotate(45deg) translateX(200%); }
+}
+
+.main-glass-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.main-title {
+    font-size: 5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, var(--accent-color), #a7ffeb, #84ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInUp 1s ease-out, glow 2s infinite alternate;
+    text-shadow: 0 0 20px rgba(79, 195, 247, 0.3);
+    letter-spacing: 2px;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px rgba(79, 195, 247, 0.3); }
+    to { text-shadow: 0 0 20px rgba(79, 195, 247, 0.6), 0 0 30px rgba(79, 195, 247, 0.4); }
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+    animation: fadeInUp 1s ease-out 0.3s both;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--secondary-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 30px 0;
+    animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+.loading-progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent-color), #a7ffeb);
+    border-radius: 10px;
+    animation: loading 5s ease-in-out forwards;
+    box-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+}
+
+@keyframes loading {
+    0% { width: 0%; }
+    70% { width: 90%; }
+    100% { width: 100%; }
+}
+
+.redirect-text {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    animation: fadeInUp 1s ease-out 0.9s both;
+}
+
+.redirect-text a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.redirect-text a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+}
+
+/* Анимации */
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Дополнительные эффекты */
+.form-group input:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Эффект параллакса для фона */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.1) 100%);
+    z-index: -1;
+}
+
+.account-prompt {
+    text-align: center;
+    margin-top: 25px;
+    color: var(--text-secondary);
+    font-size: 15px;
+}
+
+.account-prompt a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+}
+
+.account-prompt a:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(79, 195, 247, 0.6);
+}
+
+.account-prompt a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent-color);
+    transition: var(--transition);
+}
+
+.account-prompt a:hover::after {
+    width: 100%;
+}
+
+.glav{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .glass-card {
+        padding: 25px;
+        margin: 15px 0;
+    }
+    
+    .dashboard header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .chat-container {
+        height: 65vh;
+    }
+    
+    .message-input {
+        flex-direction: column;
+    }
+    
+    .message-input button {
+        width: 100%;
+    }
+    
+    .main-title {
+        font-size: 3.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .main-glass-card {
+        padding: 30px 20px;
+    }
+}
+/* Стили для созданной комнаты */
+.room-link-container {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+#room-link {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+.small-text {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+
+/* Стили для посещенных комнат */
+.visited-rooms {
+    margin-top: 15px;
+}
+
+.visited-room {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+}
+
+.room-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.btn.small {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+/* Стили для комнаты чата */
+.header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+/* Вкладки */
+.tabs {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid var(--primary-border);
+}
+
+.tab-button {
+    padding: 15px 25px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 2px solid transparent;
+}
+
+.tab-button.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+    background: rgba(79, 195, 247, 0.1);
+}
+
+.tab-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.tab-content {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+}
+
+.tab-content.active {
+    display: flex;
+}
+
+/* Секция файлов */
+.files-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.file-upload-area {
+    border: 2px dashed var(--primary-border);
+    border-radius: 15px;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 25px;
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.file-upload-area.dragover {
+    border-color: var(--accent-color);
+    background: rgba(79, 195, 247, 0.05);
+}
+
+.upload-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.upload-info {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* Список файлов */
+.files-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: var(--primary-bg);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: var(--transition);
+    border-left: 3px solid var(--accent-color);
+}
+
+.file-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.file-item.uploading {
+    opacity: 0.7;
+    border-left-color: #ffa726;
+}
+
+.file-item.error {
+    border-left-color: var(--error-color);
+}
+
+.file-icon {
+    font-size: 24px;
+    margin-right: 15px;
+    min-width: 30px;
+}
+
+.file-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.file-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-details {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.file-details span {
+    margin-right: 15px;
+}
+
+.file-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-small {
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--primary-border);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 14px;
+}
+
+.btn-small:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-small.delete:hover {
+    background: rgba(231, 76, 60, 0.3);
+    border-color: #e74c3c;
+}
+
+/* Прогресс бар */
+.file-progress {
+    width: 100px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: var(--accent-color);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.no-files {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Уведомления */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    z-index: 1000;
+    animation: slideIn 0.3s ease;
+}
+
+.notification.success {
+    background: #27ae60;
+}
+
+.notification.error {
+    background: #e74c3c;
+}
+
+.notification.info {
+    background: #3498db;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Адаптивность для файлов */
+@media (max-width: 768px) {
+    .file-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .file-actions {
+        margin-top: 10px;
+        align-self: flex-end;
+    }
+    
+    .file-details {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    .file-details span {
+        margin-right: 0;
+    }
+}
+
+/* Стили для уведомлений */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    z-index: 1000;
+    animation: slideIn 0.3s ease;
+}
+
+.notification.success {
+    background: #27ae60;
+}
+
+.notification.error {
+    background: #e74c3c;
+}
+
+.notification.info {
+    background: #3498db;
+}
+
+.small-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Стили для кнопки скачивания */
+#downloadSection {
+    transition: all 0.3s ease;
+}
+
+#downloadLink {
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}

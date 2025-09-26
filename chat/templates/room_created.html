@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="glass-card">
+        <h1>Комната создана!</h1>
+        <div class="success-message">
+            <p>Комната <strong>{{ room.name }}</strong> успешно создана.</p>
+            <p>Ссылка для доступа:</p>
+            <div class="room-link-container">
+                <input type="text" id="room-link" value="{{ room.link }}" readonly>
+                <button onclick="copyRoomLink()" class="btn">Копировать</button>
+            </div>
+            <p class="small-text">Отправьте эту ссылку и пароль другим участникам</p>
+        </div>
+        <div class="action-buttons">
+            <a href="{{ url_for('chat_room', room_link=room.link) }}" class="btn">Перейти в комнату</a>
+            <a href="{{ url_for('dashboard') }}" class="btn secondary">Назад к панели</a>
+        </div>
+    </div>
+</div>
+
+<script>
+function copyRoomLink() {
+    const roomLink = document.getElementById('room-link');
+    roomLink.select();
+    document.execCommand('copy');
+    alert('Ссылка скопирована в буфер обмена');
+}
+</script>
+{% endblock %}

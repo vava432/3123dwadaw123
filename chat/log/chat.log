@@ -1,0 +1,50 @@
+2025-09-26 20:11:49,613 - __main__ - INFO - SSL certificates loaded successfully
+2025-09-26 20:12:01,860 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:4443
+ * Running on https://192.168.1.3:4443
+2025-09-26 20:12:01,861 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-26 20:12:01,890 - werkzeug - INFO -  * Restarting with stat
+2025-09-26 20:12:02,466 - __main__ - INFO - SSL certificates loaded successfully
+2025-09-26 20:12:02,485 - werkzeug - WARNING -  * Debugger is active!
+2025-09-26 20:12:02,504 - werkzeug - INFO -  * Debugger PIN: 140-620-989
+2025-09-26 20:15:22,613 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Va_Dar\\Desktop\\rk_chat\\chat\\app.py', reloading
+2025-09-26 20:15:22,937 - werkzeug - INFO -  * Restarting with stat
+2025-09-26 20:15:24,037 - __main__ - INFO - SSL certificates loaded successfully
+2025-09-26 20:15:24,058 - werkzeug - WARNING -  * Debugger is active!
+2025-09-26 20:15:24,077 - werkzeug - INFO -  * Debugger PIN: 140-620-989
+2025-09-26 20:16:16,692 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Va_Dar\\Desktop\\rk_chat\\chat\\admin\\db.py', reloading
+2025-09-26 20:16:16,791 - werkzeug - INFO -  * Restarting with stat
+2025-09-26 20:16:17,553 - __main__ - INFO - SSL certificates loaded successfully
+2025-09-26 20:16:17,577 - werkzeug - WARNING -  * Debugger is active!
+2025-09-26 20:16:17,597 - werkzeug - INFO -  * Debugger PIN: 140-620-989
+2025-09-26 20:17:22,565 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Va_Dar\\Desktop\\rk_chat\\chat\\admin\\db.py', reloading
+2025-09-26 20:17:23,576 - werkzeug - INFO -  * Restarting with stat
+2025-09-26 20:17:25,965 - __main__ - INFO - SSL certificates loaded successfully
+2025-09-26 20:17:26,056 - werkzeug - WARNING -  * Debugger is active!
+2025-09-26 20:17:26,078 - werkzeug - INFO -  * Debugger PIN: 140-620-989
+2025-09-26 20:17:59,022 - werkzeug - INFO -  * Detected change in 'c:\\Users\\Va_Dar\\Desktop\\rk_chat\\chat\\admin\\2.py', reloading
+2025-09-26 20:17:59,291 - werkzeug - INFO -  * Restarting with stat
+2025-09-26 20:18:01,061 - __main__ - INFO - SSL certificates loaded successfully
+2025-09-26 20:18:01,108 - werkzeug - WARNING -  * Debugger is active!
+2025-09-26 20:18:01,173 - werkzeug - INFO -  * Debugger PIN: 140-620-989
+2025-09-26 20:28:49,266 - werkzeug - INFO - 192.168.1.3 - - [26/Sep/2025 20:28:49] "GET / HTTP/1.1" 200 -
+2025-09-26 20:29:06,495 - werkzeug - INFO - 192.168.1.3 - - [26/Sep/2025 20:29:06] "GET /login HTTP/1.1" 200 -
+2025-09-26 20:29:06,837 - werkzeug - INFO - 192.168.1.3 - - [26/Sep/2025 20:29:06] "GET /static/style.css HTTP/1.1" 200 -
+2025-09-26 20:29:06,841 - werkzeug - INFO - 192.168.1.3 - - [26/Sep/2025 20:29:06] "GET /static/js/script.js HTTP/1.1" 200 -
+2025-09-26 20:29:06,873 - werkzeug - INFO - 192.168.1.3 - - [26/Sep/2025 20:29:06] "GET /static/river-night-view-nature-illustration-art-d3o8618qithikkj8.jpg HTTP/1.1" 200 -
+2025-09-26 20:30:28,039 - __main__ - INFO - SSL certificates loaded successfully
+2025-09-26 20:30:40,165 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on https://127.0.0.1:443
+ * Running on https://192.168.1.3:443
+2025-09-26 20:30:40,165 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-09-26 20:30:40,172 - werkzeug - INFO -  * Restarting with stat
+2025-09-26 20:30:40,763 - __main__ - INFO - SSL certificates loaded successfully
+2025-09-26 20:30:40,786 - werkzeug - WARNING -  * Debugger is active!
+2025-09-26 20:30:40,803 - werkzeug - INFO -  * Debugger PIN: 140-620-989
+2025-09-26 20:31:03,608 - werkzeug - INFO - 192.168.1.3 - - [26/Sep/2025 20:31:03] "GET / HTTP/1.1" 200 -
+2025-09-26 20:31:03,759 - werkzeug - INFO - 192.168.1.3 - - [26/Sep/2025 20:31:03] "[33mGET /river-night-view-nature-illustration-art-d3o8618qithikkj8.jpg HTTP/1.1[0m" 404 -
+2025-09-26 20:31:03,868 - werkzeug - INFO - 192.168.1.3 - - [26/Sep/2025 20:31:03] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-09-26 20:32:24,275 - werkzeug - INFO - 192.168.1.3 - - [26/Sep/2025 20:32:24] "GET / HTTP/1.1" 200 -
+2025-09-26 20:32:24,504 - werkzeug - INFO - 192.168.1.3 - - [26/Sep/2025 20:32:24] "GET /static/river-night-view-nature-illustration-art-d3o8618qithikkj8.jpg HTTP/1.1" 200 -
